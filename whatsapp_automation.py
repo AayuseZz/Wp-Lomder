@@ -38,7 +38,7 @@ driver.refresh()
 time.sleep(5)
 
 # Send a message to a contact using their phone number
-phone_number = "+1234567890"  # Replace with the phone number (in international format, e.g., +1 for USA)
+phone_number = "9810261171"  # Replace with the phone number (in international format, e.g., +1 for USA)
 message = "Hello, this is an automated message!"
 
 # Open the WhatsApp chat for the specified phone number
