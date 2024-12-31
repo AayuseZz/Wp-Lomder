@@ -1,0 +1,36 @@
+name: WhatsApp Automation
+
+on:
+  push:
+    branches:
+      - main  # Trigger the action on push to the main branch
+  workflow_dispatch:  # Allows you to trigger the workflow manually from GitHub UI
+
+jobs:
+  send_whatsapp_message:
+    runs-on: ubuntu-latest  # Use Ubuntu environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python environment
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Set the Python version to use
+
+    - name: Install dependencies
+      run: |
+        pip install selenium
+        sudo apt-get update
+        sudo apt-get install -y chromium-driver
+
+    - name: Run WhatsApp Automation Script
+      run: |
+        export WA_WEB_SESSION_COOKIE="36000662-fdf3-4a00-abb3-0b5e25691ed7"  # Replace with your actual session cookie
+        export WEB_WHATSAPP_WEB_COOKIE="en_GB"  # Optional, language cookie
+        export DISPLAY=:99.0  # For headless Chrome to run in GitHub Actions
+        python whatsapp_automation.py  # Run your script
+
+    - name: Clean up
+      run: sudo apt-get remove chromium-driver
