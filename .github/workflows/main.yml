@@ -21,9 +21,9 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install selenium
         sudo apt-get update
-        sudo apt-get install -y chromium-driver
+        sudo apt-get install -y chromium-browser
+        pip install selenium
 
     - name: Run WhatsApp Automation Script
       run: |
@@ -33,4 +33,4 @@ jobs:
         python whatsapp_automation.py  # Run your script
 
     - name: Clean up
-      run: sudo apt-get remove chromium-driver
+      run: sudo apt-get remove chromium-browser
